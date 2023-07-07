@@ -1,10 +1,11 @@
-import { useState } from "react"
+
 import { createAuthUSerWithIdAndPAssword ,createUserDocumentFromAuth} from "../../utils/firebase/firebase"
 import { signInWithGooglePopup , signinwithGoogleRedirect, auth,SigninAuthUSerWithIdAndPAssword} from "../../utils/firebase/firebase"
 import Forminput from "../form-input/form-input.component"
 import '../Sign-in-form/Sign-in-form.styles.scss'
 import Button from '../button/button.component'
 import { signInWithEmailAndPassword } from "firebase/auth"
+
 
 const defaultFormFields = {
  email:'',
@@ -16,6 +17,7 @@ const Signin= ()=>{
     const [FormFields,setFormFields]=useState(defaultFormFields)  
     const {email,password}=FormFields
 
+
 const handleChange = (event)=>{
     const {name,value}=event.target
     setFormFields({...FormFields,[name]:value})
@@ -24,8 +26,9 @@ const handleChange = (event)=>{
 const handleSubmit = async (e)=>{
 e.preventDefault(); 
 try{
-  const response= await SigninAuthUSerWithIdAndPAssword(email,password)
-  console.log(response)
+ const {user}= await SigninAuthUSerWithIdAndPAssword(email,password)
+
+
   resetFormFields()
 }
 catch(error){
@@ -39,15 +42,17 @@ const resetFormFields = ()=>{
 
 const  SignInWithGoogle= async ()=>{
     try{
-        const {user}= await signInWithGooglePopup()
-        // console.log(response)
-      await createUserDocumentFromAuth(user)
+
+        await signInWithGooglePopup()
+       
+      
+
     }
     catch(error){
         if (error.code=='auth/popup-closed-by-user'){
             alert('Pop up Closed by user')
         }
-        // console.log(error)
+
     }
    
 }

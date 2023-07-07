@@ -8,7 +8,13 @@ import {
   signInWithPopup, 
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+
+ 
+
 } from 'firebase/auth'
 
 // -------------------------------------------------------------------------------------
@@ -40,6 +46,28 @@ provider.setCustomParameters({
 export const auth= getAuth();
 export const signInWithGooglePopup = ()=> {return signInWithPopup(auth,provider)}
 // export const signinwithGoogleRedirect = ()=> signInWithRedirect(auth,provider)
+
+
+// id and password se humko pehle user banana pdega phr sign in krna pdega...unlike in above method
+// ------------create authenticated user with id and password--------------------------------------
+export const createAuthUSerWithIdAndPAssword= async(email,password)=>{
+  if(!email || !password) return;
+ return await createUserWithEmailAndPassword(auth,email,password)
+}
+
+// ------sign in user with email id and password---------------------------------------------
+
+export const SigninAuthUSerWithIdAndPAssword= async(email,password)=>{
+  if(!email || !password) return;
+ return await signInWithEmailAndPassword(auth,email,password)
+}
+
+// --------------------Sign out method---------------------------------------------------
+
+export const signOutUser = async ()=>{
+ await signOut(auth)
+}
+
 
 
 // ---------------------database----------------------------------------------------------
@@ -74,15 +102,11 @@ export const createUserDocumentFromAuth = async (userAuth,additionalInformation=
   return userDocRef
 }
 
-// ------------create authenticated user with id and password--------------------------------------
-export const createAuthUSerWithIdAndPAssword= async(email,password)=>{
-  if(!email || !password) return;
- return await createUserWithEmailAndPassword(auth,email,password)
+// -----------------on auth change listener------------------------------------------------
+
+export const onAuthChangedListener = (callback)=>{
+onAuthStateChanged(auth,callback)
 }
 
-// ------sign in user with email id and password---------------------------------------------
 
-export const SigninAuthUSerWithIdAndPAssword= async(email,password)=>{
-  if(!email || !password) return;
- return await signInWithEmailAndPassword(auth,email,password)
-}
+

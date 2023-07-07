@@ -4,18 +4,11 @@ import {  Routes, Route , Outlet} from "react-router-dom";
 import Navigation from "./routes/navigation/navigation.component";
 import Authentication from "./routes/Authentication/Authentication.component";
 
-const Shop = ()=> {
-  return (
-    <h1>hello its shop</h1>
-  )
-}
-
-
+import Shop from "./routes/shop/shop.component";
 
 
 const App = ()=> {
   
-
   return (
   <Routes>
    <Route path="/" element={<Navigation />} >
@@ -25,11 +18,7 @@ const App = ()=> {
   </Route> 
   </Routes>
 
+)}
 
-  )
-
-  
-
-}
 
 export default App;
