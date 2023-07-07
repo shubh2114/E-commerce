@@ -8,9 +8,13 @@ import {
   signInWithPopup, 
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged
+
+ 
+
 } from 'firebase/auth'
 
 // -------------------------------------------------------------------------------------
@@ -43,6 +47,7 @@ export const auth= getAuth();
 export const signInWithGooglePopup = ()=> {return signInWithPopup(auth,provider)}
 // export const signinwithGoogleRedirect = ()=> signInWithRedirect(auth,provider)
 
+
 // id and password se humko pehle user banana pdega phr sign in krna pdega...unlike in above method
 // ------------create authenticated user with id and password--------------------------------------
 export const createAuthUSerWithIdAndPAssword= async(email,password)=>{
@@ -62,6 +67,7 @@ export const SigninAuthUSerWithIdAndPAssword= async(email,password)=>{
 export const signOutUser = async ()=>{
  await signOut(auth)
 }
+
 
 
 // ---------------------database----------------------------------------------------------
@@ -101,4 +107,6 @@ export const createUserDocumentFromAuth = async (userAuth,additionalInformation=
 export const onAuthChangedListener = (callback)=>{
 onAuthStateChanged(auth,callback)
 }
+
+
 

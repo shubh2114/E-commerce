@@ -1,9 +1,11 @@
-import {  useState } from "react"
+
 import { createAuthUSerWithIdAndPAssword ,createUserDocumentFromAuth} from "../../utils/firebase/firebase"
 import { signInWithGooglePopup , signinwithGoogleRedirect, auth,SigninAuthUSerWithIdAndPAssword} from "../../utils/firebase/firebase"
 import Forminput from "../form-input/form-input.component"
 import '../Sign-in-form/Sign-in-form.styles.scss'
 import Button from '../button/button.component'
+import { signInWithEmailAndPassword } from "firebase/auth"
+
 
 const defaultFormFields = {
  email:'',
@@ -14,7 +16,7 @@ const Signin= ()=>{
     
     const [FormFields,setFormFields]=useState(defaultFormFields)  
     const {email,password}=FormFields
-    
+
 
 const handleChange = (event)=>{
     const {name,value}=event.target
@@ -24,7 +26,8 @@ const handleChange = (event)=>{
 const handleSubmit = async (e)=>{
 e.preventDefault(); 
 try{
-  const {user}= await SigninAuthUSerWithIdAndPAssword(email,password)
+ const {user}= await SigninAuthUSerWithIdAndPAssword(email,password)
+
 
   resetFormFields()
 }
@@ -39,15 +42,17 @@ const resetFormFields = ()=>{
 
 const  SignInWithGoogle= async ()=>{
     try{
+
         await signInWithGooglePopup()
        
       
+
     }
     catch(error){
         if (error.code=='auth/popup-closed-by-user'){
             alert('Pop up Closed by user')
         }
-       
+
     }
    
 }
