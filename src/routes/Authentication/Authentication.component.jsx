@@ -1,29 +1,15 @@
+import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
+import SignInForm from "../../components/sign-in-form/sign-in-form.component";
 
-import './Authentication.styles.scss'
-import Signup from "../../components/Sign-up/Sign-up.component"
-import Signin from "../../components/Sign-in-form/Sign-in.component"
+import "./authentication.styles.scss";
 
+const Authentication = () => {
+  return (
+    <div className="authentication-container">
+      <SignInForm />
+      <SignUpForm />
+    </div>
+  );
+};
 
-
-const Authentication = ()=>{
-   
-    // useEffect(  ()=>{
-    //          const getUSer= async ()=>{
-    //         const response= await getRedirectResult(auth)
-    //         if(response){
-    //          const userDocref=await createUserDocumentFromAuth(response.user)
-    //         } }
-    //         getUSer()
-    // },[]);
-    
-    return (
-        <div className="authentication-container">
-      
-        <Signin/>
-        {/* <button onClick={signinwithGoogleRedirect}>Sign in with Google Popup</button> */}
-        <Signup/>
-        </div>
-    )
-}
-
-export default Authentication
+export default Authentication;
