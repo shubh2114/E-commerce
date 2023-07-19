@@ -9,7 +9,7 @@ const DirectoryItem = ({ category }) => {
   const routeHandler=()=>{navigate(route)}
   return (
     <DirectoryItemContainer onClick={routeHandler}>
-      <BackgroundImage imageUrl={imageUrl} />
+      <BackgroundImage imageurl={imageUrl} />
       <Body>
         <h2>{title}</h2>
         <p>Shop Now</p>
